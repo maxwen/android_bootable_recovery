@@ -519,7 +519,7 @@ bool TWPartition::Process_Fstab_Line(const char *fstab_line, bool Display_Error,
 			Display_Name = "Boot";
 			Backup_Display_Name = Display_Name;
 			DataManager::SetValue("tw_boot_is_mountable", 1);
-			Can_Be_Backed_Up = true;
+			Mount_Read_Only = true;
 		} else if (Mount_Point == "/vendor") {
 			Display_Name = "Vendor";
 			Backup_Display_Name = Display_Name;
@@ -697,7 +697,7 @@ void TWPartition::Setup_Data_Partition(bool Display_Error) {
 				LOGERR("Unable to decrypt FBE device\n");
 			} else {
 				LOGINFO("Trying wrapped key.\n");
-				property_set("fbe.data.wrappedkey", "true");
+				//property_set("fbe.data.wrappedkey", "true");
 				if (!Decrypt_FBE_DE()) {
 					LOGERR("Unable to decrypt FBE device\n");
 				}

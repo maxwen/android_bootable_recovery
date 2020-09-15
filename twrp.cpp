@@ -145,9 +145,16 @@ int main(int argc, char **argv) {
 	gui_init();
 	printf("=> Linking mtab\n");
 	symlink("/proc/mounts", "/etc/mtab");
+    
 	std::string fstab_filename = "/etc/twrp.fstab";
 	if (!TWFunc::Path_Exists(fstab_filename)) {
-		fstab_filename = "/etc/recovery.fstab";
+        if (TWFunc::Path_Exists("/dev/block/mmcblk0p1") && TWFunc::Path_Exists("/etc/recovery.sd.fstab")) {
+            fstab_filename = "/etc/recovery.sd.fstab";
+        } else if (TWFunc::Path_Exists("/dev/block/sda1") && TWFunc::Path_Exists("/etc/recovery.usb.fstab")) {
+            fstab_filename = "/etc/recovery.usb.fstab";
+        } else {
+            fstab_filename = "/etc/recovery.fstab";            
+        }
 	}
 	printf("=> Processing %s\n", fstab_filename.c_str());
 	if (!PartitionManager.Process_Fstab(fstab_filename, 1)) {

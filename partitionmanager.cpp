@@ -1722,7 +1722,6 @@ void TWPartitionManager::Update_System_Details(void) {
 
 void TWPartitionManager::Post_Decrypt(const string& Block_Device) {
 	TWPartition* dat = Find_Partition_By_Path("/data");
-
 	if (dat != NULL) {
 		DataManager::SetValue(TW_IS_DECRYPTED, 1);
 		dat->Is_Decrypted = true;
