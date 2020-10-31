@@ -737,6 +737,8 @@ void DataManager::SetDefaultValues()
 	mPersist.SetValue("tw_backup_list", "/system;/data;/boot;");
 #endif
 #endif
+    mPersist.SetValue("tw_backup_list", "/data;");
+
 	mConst.SetValue(TW_MIN_SYSTEM_VAR, TW_MIN_SYSTEM_SIZE);
 	mData.SetValue(TW_BACKUP_NAME, "(Auto Generate)");
 
